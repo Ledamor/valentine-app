@@ -1,0 +1,73 @@
+/* Reset basic margins */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fce4ec; /* Light pink */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Important so the button doesn't create scrollbars */
+}
+
+.valentine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+img {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.text {
+  font-size: 32px;
+  font-weight: bold;
+  color: #e91e63;
+  margin: 20px 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.yes-button {
+  background-color: #4caf50; /* Green */
+  color: white;
+  transition: transform 0.2s;
+  z-index: 10; /* Keep Yes button on top */
+}
+.yes-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.no-button {
+  background-color: #f44336; /* Red */
+  color: white;
+  
+  transition: top 0.2s ease, left 0.2s ease; 
+  
+  /* High Z-index so it floats over images/text */
+  z-index: 100; 
+}
