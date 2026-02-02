@@ -4,21 +4,21 @@ import "./App.css";
 function App() {
   const [yesPressed, setYesPressed] = useState(false);
   
-  // Start with standard positioning, then switch to absolute movement
-  const [noStyle, setNoStyle] = useState<{ position: string; top?: string; left?: string }>({
-    position: "static", // Start in the normal layout flow
-  });
+  // State to track the position of the "No" button
+  const [noButtonPosition, setNoButtonPosition] = useState({ top: "auto", left: "auto", position: "static" });
 
+  // Function to move the button to a random spot
   const moveNoButton = () => {
-    // Generate random coordinates within the visible window
-    // We subtract approx button dimensions (150 width, 50 height) to keep it on screen
-    const x = Math.random() * (window.innerWidth - 150);
-    const y = Math.random() * (window.innerHeight - 100);
+    const maxWidth = window.innerWidth - 100; // Subtract button width approx
+    const maxHeight = window.innerHeight - 50; // Subtract button height approx
 
-    setNoStyle({
-      position: "fixed", // Allows it to move freely over everything
-      left: `${x}px`,
-      top: `${y}px`,
+    const randomX = Math.floor(Math.random() * maxWidth);
+    const randomY = Math.floor(Math.random() * maxHeight);
+
+    setNoButtonPosition({
+      top: `${randomY}px`,
+      left: `${randomX}px`,
+      position: "absolute", // Switch to absolute positioning so it can move anywhere
     });
   };
 
@@ -31,7 +31,11 @@ function App() {
             alt="bears kissing"
             src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif"
           />
-          <div className="text">Yay!!! Happy Valentine's Day!</div>
+          <div className="text">Yay!!! You officially my valentine!!!!!!</div>
+          <div className="text"> I love you so muchhhh!!!
+
+             
+          </div>
         </>
       ) : (
         /* --- QUESTION STATE --- */
@@ -51,14 +55,12 @@ function App() {
               Yes
             </button>
             
-            {/* We wrap the No button in a generic div to help with spacing 
-               when the button goes 'fixed' and leaves the flow 
-            */}
             <button 
               className="no-button"
+              onMouseEnter={moveNoButton} // Moves when mouse touches it
+              onClick={moveNoButton}      // Moves if they manage to click fast on mobile
               // @ts-ignore
-              style={noStyle} 
-              onMouseEnter={moveNoButton} 
+              style={noButtonPosition}
             >
               No
             </button>
